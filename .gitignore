@@ -1,0 +1,14 @@
+# credentials and tokens never belong in git
+config.json
+token-*.json
+*.token
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.vscode/
+.idea/
+
+# keep the committed screenshot
+!docs/*.png
