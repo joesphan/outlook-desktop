@@ -5,7 +5,7 @@ This deliberately does not reuse any pre-existing application ID. Register your 
 personal Microsoft accounts" -> Authentication -> Allow public client flows) and put
 the client ID in the config file.
 
-Tokens are cached under %LOCALAPPDATA%\\outlook-tui\\ and refreshed with the stored
+Tokens are cached under %LOCALAPPDATA%\\outlook-desktop\\ and refreshed with the stored
 refresh token, so the browser step happens once.
 """
 
@@ -25,7 +25,7 @@ IMAP_SCOPE = "https://outlook.office.com/IMAP.AccessAsUser.All offline_access"
 
 def cache_dir() -> Path:
     base = os.environ.get("LOCALAPPDATA") or str(Path.home())
-    path = Path(base) / "outlook-tui"
+    path = Path(base) / "outlook-desktop"
     path.mkdir(parents=True, exist_ok=True)
     return path
 

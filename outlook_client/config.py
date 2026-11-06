@@ -1,6 +1,6 @@
 """Config loading.
 
-Lookup order: --config, $OUTLOOK_TUI_CONFIG, %LOCALAPPDATA%\\outlook-tui\\config.json,
+Lookup order: --config, $OUTLOOK_DESKTOP_CONFIG, %LOCALAPPDATA%\\outlook-desktop\\config.json,
 ./config.json.
 
 A config is a JSON object with an "accounts" array. Two shapes are supported:
@@ -52,11 +52,11 @@ def config_candidates(explicit: str | None = None) -> list[Path]:
     paths: list[Path] = []
     if explicit:
         paths.append(Path(explicit))
-    env = os.environ.get("OUTLOOK_TUI_CONFIG")
+    env = os.environ.get("OUTLOOK_DESKTOP_CONFIG")
     if env:
         paths.append(Path(env))
     base = os.environ.get("LOCALAPPDATA") or str(Path.home())
-    paths.append(Path(base) / "outlook-tui" / "config.json")
+    paths.append(Path(base) / "outlook-desktop" / "config.json")
     paths.append(Path.cwd() / "config.json")
     return paths
 
@@ -70,7 +70,7 @@ def resolve_config_path(explicit: str | None = None) -> Path | None:
 
 def default_config_path() -> Path:
     base = os.environ.get("LOCALAPPDATA") or str(Path.home())
-    return Path(base) / "outlook-tui" / "config.json"
+    return Path(base) / "outlook-desktop" / "config.json"
 
 
 def write_config(accounts: list[Account], path: Path) -> Path:
